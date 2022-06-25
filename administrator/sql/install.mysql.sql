@@ -8,6 +8,7 @@ CREATE TABLE IF NOT EXISTS `#__remidials` (
     `auth_fakultas` TINYINT(4) UNSIGNED NOT NULL DEFAULT 0,
     `nilai_awal` TINYINT(4) UNSIGNED NOT NULL DEFAULT 0,
     `nilai_remidial` TINYINT(4) NULL DEFAULT NULL,
+    `update_master_nilai` TINYINT(2) NOT NULL DEFAULT 0,
     `input_by` INT(10) NOT NULL DEFAULT 0,
     `input_date` DATETIME NULL DEFAULT NULL,
     `checked_out` INT(10) UNSIGNED  NOT NULL DEFAULT 0,

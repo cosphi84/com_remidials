@@ -2,7 +2,7 @@
 <extension type="component" version="3.10" method="upgrade">
     <name>COM_REMIDIALS</name>
     <creationDate>20 Juni 2022</creationDate>
-    <author>Risam Albanjumasy</author>
+    <author>Risam, S.T</author>
     <authorEmail>risam1984@gmail.com</authorEmail>
     <authorUrl>www.teknik.untagcirebon.ac.id</authorUrl>
     <copyright>Copyright (C) Fakultas Teknik UNTAG Cirebon</copyright>
@@ -42,14 +42,16 @@
         <language tag="id-ID">site/id-ID.com_remidials.ini</language>
     </languages>
 
+    
     <administration>
         <menu>COM_REMIDIALS</menu>
-            <submenu>
-                <menu view=""></menu>
-            </submenu>
-        </menu>
+        <submenu>
+            <menu view="registrations">COM_REMIDIALS_REGISTRATIONS_MENU</menu>
+            <menu view="remidials">COM_REMIDIALS_REMIDIALS_MENU</menu>
+        </submenu>
 
-        <files name="administrator">
+
+        <files folder="administrator">
             <folder>controllers</folder>
             <folder>models</folder>
             <folder>views</folder>
@@ -67,5 +69,6 @@
             <language tag="id-ID">admin/id-ID.com_remidials.ini</language>
             <language tag="id-ID">admin/id-ID.com_remidials.sys.ini</language>
         </languages>
-    </administration>
+    
+    </administration>  
 </extension>
