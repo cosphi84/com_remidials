@@ -7,6 +7,12 @@
  * @license     Limited for FT-UNTAG Cirebon use Only
  */
 
+use Joomla\CMS\Component\ComponentHelper;
+use Joomla\CMS\Factory;
+use Joomla\CMS\MVC\Controller\BaseController;
+use Joomla\CMS\Router\Route;
+use Joomla\CMS\Uri\Uri;
+
 defined('_JEXEC') or die();
 
 /**
@@ -14,31 +20,28 @@ defined('_JEXEC') or die();
  *
  * Since 0.0.1
  */
-class RemidialsController extends JControllerLegacy
+
+class RemidialsController extends BaseController
 {
-    /**
-     * Method to display a view.
-     *
-     * @param   boolean  $cachable   If true, the view output will be cached
-     * @param   array    $urlparams  An array of safe URL parameters and their variable types, for valid values see {@link JFilterInput::clean()}.
-     *
-     *
-     * @since   0.0.1
-     */
-    public function display($cacheable = false, $urlparams = false)
+    public function display($cachable = false, $urlparams = false)
     {
+        $app = Factory::getApplication();
+
         // validated user only
-        $user = JFactory::getUser();
+        $user = Factory::getUser();
         if ($user->get('guest') == 1) {
-            $uri = base64_encode(JUri::getInstance());
-            $login_page = JRoute::_('index.php?option=com_users&view=login&return='.$uri);
+            $url = Uri::getInstance();
+            $uri = base64_encode($url);
+            $login_page = Route::_('index.php?option=com_users&view=login&return='.$uri, false);
             $this->setRedirect($login_page, JText::_('JERROR_ALERTNOAUTHOR'), 'error');
 
             return 0;
         }
 
-        $doc = JFactory::getDocument();
-        $vName = $this->input->getCmd('view', 'dashboard');
+        $siakParams = ComponentHelper::getParams('com_siak');
+
+        $doc = Factory::getDocument();
+        $vName = $app->input->getCmd('view', 'nilai');
         $vFormat = $doc->getType();
         $lName = $this->input->getCmd('layout', 'default');
 
@@ -46,8 +49,7 @@ class RemidialsController extends JControllerLegacy
             $model = $this->getModel($vName);
         }
 
-        JFactory::getApplication()->setHeader('Referrer-Policy', 'no-referrel', true);
-        $view->setModel($model);
+        $view->setModel($model, true);
         $view->setLayout($lName);
         $view->document = $doc;
         $view->display();

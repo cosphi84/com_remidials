@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+	<layout title="COM_REMIDIALS_VIEW_REGISTRATION_TITLE" option="COM_REMEDIALS_VIEW_REGISTRATION_OPTION">
+		
+		<message>
+			<![CDATA[COM_REMIDIALS_VIEW_REGISTRATION_DESC]]>
+		</message>
+	</layout>
+</metadata>

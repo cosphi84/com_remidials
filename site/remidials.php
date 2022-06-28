@@ -7,9 +7,12 @@
  * @license     Limited for FT-UNTAG Cirebon use Only
  */
 
+use Joomla\CMS\Factory;
+use Joomla\CMS\MVC\Controller\BaseController;
+
 defined('_JEXEC') or die;
 
-$task = JFactory::getApplication()->input->get('task');
-$controller = JControllerLegacy::getInstance('Remidials');
+$controller = BaseController::getInstance('Remidials');
+$task = Factory::getApplication()->input->get('task');
 $controller->execute($task);
 $controller->redirect();

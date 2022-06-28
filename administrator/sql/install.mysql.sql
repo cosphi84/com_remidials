@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS `#__remidials` (
     `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-    `catid` INT(11) NOT NULL DEFAULT 0,
+    `catid` VARCHAR(10) NOT NULL DEFAULT '',
     `tahun_ajaran` VARCHAR(10) NOT NULL DEFAULT '',
     `nilai_id` INT(10) UNSIGNED NOT NULL,
     `state` TINYINT(4) NOT NULL DEFAULT 0,
@@ -17,6 +17,5 @@ CREATE TABLE IF NOT EXISTS `#__remidials` (
 	`created_date` DATETIME	NULL DEFAULT NULL,  	
     `asset_id` INT(10) UNSIGNED NOT NULL DEFAULT 0,
 	PRIMARY KEY (`id`),
-    CONSTRAINT `rem_nilai` FOREIGN KEY (`nilai_id`) REFERENCES `#__siak_nilai` (`id`) ON UPDATE CASCADE ON DELETE RESTRICT,
-    CONSTRAINT `rem_dosen` FOREIGN KEY (`dosen_id`) REFERENCES `#__users` (`id`) ON UPDATE CASCADE ON DELETE CASCADE
+    CONSTRAINT `rem_nilai` FOREIGN KEY (`nilai_id`) REFERENCES `#__siak_nilai` (`id`) ON UPDATE CASCADE ON DELETE RESTRICT
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE=utf8mb4_unicode_ci;

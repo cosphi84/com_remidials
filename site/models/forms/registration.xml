@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+    <fieldset 
+        name="frmRegistrasiRemidial"
+        label="COM_REMIDIAL_REGISTRATION_FORM" >
+
+        <field 
+            name        = "nilai_id"
+            type        = "modal_nilairemidial"
+            label       = "COM_REMIDIAL_FIELD_NILAI_ID_LABEL"
+            description = ""
+            required    = "true"
+            autofocus   = "true"
+        />
+    </fieldset>
+
+</form>

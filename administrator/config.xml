@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <fieldset
+        name        = "remidials_config"
+        label       = "COM_REMIDIALS_CONFIG_CFG_LABEL"
+        description = "COM_REMIDIALS_CONFIG_CFG_DESC"
+    >
+        <field 
+            name    = "remidial_en"
+            type    = "radio"
+            default = "0"
+            label   = "COM_REMIDIALS_CONFIG_REMIDIAL_ON_OFF_LABEL"
+            description = "COM_REMIDIALS_CONFIG_REMIDIAL_ON_OFF_DESC"
+            required    = "true"
+            class       = "btn-group btn-group-yesno"
+        >
+            <option value = "1">JYES</option>
+            <option value = "0">JNO</option>
+        </field>
+
+        <field
+            name    = "auto_off"
+            type    = "radio"
+            label   = "COM_REMIDIALS_CONFIG_AUTO_OFF_LABEL"
+            description = ""
+            class       = "btn-group btn-group-yesno"
+            default     = "1"
+            required    = "true"
+        >
+            <option value="1">JYES</option>
+            <option value="0">JNO</option>
+        </field>
+
+        <field 
+            name    = "off_date"
+            type    = "calendar"
+            label   = "COM_REMIDIALS_CONFIG_AUTO_OFF_DATE_LABEL"
+            description = "COM_REMIDIALS_CONFIG_AUTO_OFF_DATE_DESC"
+            class   = "input input-large"
+            default = "now +1 week"
+            showon  = "auto_off:1"
+        />
+
+        <field
+            name    = "jenis_remidial"    
+            type    = "radio"
+            label   = "COM_REMIDIALS_CONFIG_JENIS_REMIDIAL_LABEL"
+            description = ""
+            class       = "btn-group"
+            required    = "true"
+        >
+            <option value="uts">COM_REMIDIALS_UTS</option>
+            <option value="uas">COM_REMIDIALS_UAS</option>
+            <option value="sp">COM_REMIDIALS_SP</option>
+        </field>
+
+        <field 
+            name        = "treshold_uts"
+            type        = "number"
+            label       = "COM_REMIDIALS_CONFIG_TRESHOLD_UTS_LABEL"
+            description = ""
+            min         = "0"
+            max         = "80"
+            step        = "5"
+            class       = "input input-small"
+            showon      = "jenis_remidial:uts"
+        />
+
+        <field 
+            name        = "treshold_uas"
+            type        = "number"
+            label       = "COM_REMIDIALS_CONFIG_TRESHOLD_UAS_LABEL"
+            description = ""
+            min         = "0"
+            max         = "80"
+            step        = "5"
+            class       = "input input-small"
+            showon      = "jenis_remidial:uas"
+        />
+
+        <field 
+            name        = "treshold_sp"
+            type        = "number"
+            label       = "COM_REMIDIALS_CONFIG_TRESHOLD_SP_LABEL"
+            description = ""
+            min         = "0"
+            max         = "80"
+            step        = "5"
+            class       = "input input-small"
+            showon      = "jenis_remidial:sp"
+        />
+
+    </fieldset>
+
+    <fieldset
+        name        = "permission"
+        label       = "JCONFIG_PERMISSIONS_LABEL"
+        description = "JCONFIG_PERMISSIONS_DESC"
+    >
+        <field 
+            name        = "rules"
+            type        = "rules"
+            label       = "JCONFIG_PERMISSIONS_LABEL"
+            class       = "input"
+            validate    = "rules"
+            filter      = "rules"
+            component   = "com_remidials"
+            section     = "component"
+        />
+    </fieldset>
+</config>

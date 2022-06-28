@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form>
+    <fields name = "filter">
+        <field 
+            name = "search"
+            type = "text" 
+            inputmode = "search"
+            label = "COM_REMIDIAL_SEARCH_MK"
+            hint = "COM_REMIDIAL_SEARCH_MATAKULIAH_HINT"
+        />
+
+        <field 
+            name    = "jenis"
+            type    = "list"
+            onchange = "this.form.submit();"
+            class   = "input input-medium"
+        >
+            <option value="">-- Jenis Perbaikan --</option>
+            <option value="uas">COM_REMIDIALS_UAS</option>
+            <option value="uts">COM_REMIDIALS_UTS</option>
+            <option value="sp">COM_REMIDIALS_NILAI_AKHIR</option>
+        </field>
+    </fields>
+
+    <fields name="list">		
+		<field
+			name="limit"
+			type="limitbox"
+			label="COM_CONTENT_LIST_LIMIT"
+			description="COM_CONTENT_LIST_LIMIT_DESC"
+			class="input-medium"
+			default="10"
+			onchange="this.form.submit();"
+		/>
+	</fields>
+</form>

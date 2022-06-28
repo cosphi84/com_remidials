@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form>
+    <fields name="filter"> 
+        <field 
+            name    = "search"
+            type    = "text"
+            label   = "COM_REMIDIALS_REMIDIAL_FILTER_SEARCH"
+            description = ""
+            hint    = "Cari NPM / Nama Mahasiswa"
+            class   = "input input-large"
+        />
+    </fields>
+
+    <fields name="list">		
+		<field
+			name="limit"
+			type="limitbox"
+			label="COM_CONTENT_LIST_LIMIT"
+			description="COM_CONTENT_LIST_LIMIT_DESC"
+			class="input-medium"
+			default="20"
+			onchange="this.form.submit();"
+		/>
+	</fields>
+</form>

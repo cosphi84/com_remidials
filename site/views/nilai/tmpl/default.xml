@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+	<layout title="COM_REMIDIALS_VIEW_NILAI_TITLE" option="COM_REMIDIALS_VIEW_NILAI_OPTION">
+		
+		<message>
+			<![CDATA[COM_REMIDIALS_VIEW_NILAI_MSG]]>
+		</message>
+	</layout>
+</metadata>
