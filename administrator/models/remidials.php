@@ -7,6 +7,7 @@
  * @license     Limited for FT-UNTAG Cirebon use Only
  */
 
+use Joomla\CMS\Factory;
 use Joomla\CMS\MVC\Model\ListModel;
 
 defined('_JEXEC') or die();
@@ -17,7 +18,9 @@ class RemidialsModelRemidials extends ListModel
     {
         if (empty($config['filter_fields'])) {
             $config['filter_fields'] = array(
-                'id'
+                'id',
+                'status',
+                'prodi',
             );
         }
         parent::__construct($config);
@@ -48,12 +51,40 @@ class RemidialsModelRemidials extends ListModel
 
         $query->select('g.title AS kelas')
             ->leftJoin('#__siak_kelas_mahasiswa AS g on g.id = n.kelas');
-
+        $query->select(array('u.name AS mahasiswa', 'u.username AS NPM'))
+            ->leftJoin('#__users AS u ON u.id = n.user_id');
+            
         $search = $this->getState('filter.search');
         $prodi = $this->getState('filter.prodi');
-        $konsentrasi = $this->getState('filter.jurusan');
         $status = $this->getState('filter.status');
 
+        if (!empty($search)) {
+            $likes = array( $db->qn('u.name'). ' LIKE '. $db->quote('%'. $search.'%'),
+                            $db->qn('u.username'). ' LIKE '. $db->quote('%'. $search.'%')
+                            );
+            $query->where('( '. implode(' OR ', $likes). ' )');
+        }
+
+        if (!empty($status)) {
+            $query->where($db->qn('n.state'). ' = '. (int) $status);
+        }
+
+        if (!empty($prodi)) {
+            $query->where($db->qn('n.prodi'). ' = '. $db->q($prodi));
+        }
+
+        // Add the list ordering clause.
+        $orderCol	= $this->state->get('list.ordering', 'id');
+        $orderDirn 	= $this->state->get('list.direction', 'asc');
+
+        $query->order($db->escape($orderCol) . ' ' . $db->escape($orderDirn));
         return $query;
+    }
+
+    protected function populateState($ordering = null, $direction = null)
+    {
+        $app = Factory::getApplication();
+        $this->setState('filter.prodi', $this->getUserStateFromRequest($this->context.'.filter.prodi', 'filter_prodi', '', 'string'));
+        parent::populateState($ordering, $direction);
     }
 }
