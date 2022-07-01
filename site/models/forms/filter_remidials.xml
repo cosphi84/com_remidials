@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form>
+    <fields name="filter"> 
+        <field 
+            name    = "search"
+            type    = "text"
+            label   = "COM_REMIDIALS_REMIDIAL_FILTER_SEARCH"
+            description = ""
+            hint    = "Kode Matakuliah"
+            class   = "input input-large"
+        />
+        
+		<field
+            name    = "jenis"
+            type    = "list"
+            label   = "COM_REMIDIALS_STATUS_LABEL"
+            description = ""
+            class   = "input input-medium"      
+			onchange = "this.form.submit();"      
+        >
+            <option value = "">JOPTION_SELECT_CATEGORY</option>
+			<option value="uts">COM_REMIDIALS_UTS</option>
+			<option value="uas">COM_REMIDIALS_UAS</option>
+			<option value="sp">COM_REMIDIALS_SP</option>
+			
+        </field>
+        <field
+            name    = "status"
+            type    = "statusremidi"
+            label   = "COM_REMIDIALS_STATUS_LABEL"
+            description = ""
+            class   = "input input-medium"      
+			onchange = "this.form.submit();"      
+        >
+            <option value = "">COM_REMIDIALS_SELECT_STATUS</option>
+        </field>
+
+    </fields>
+
+    <fields name="list">	
+       	
+		<field
+			name="limit"
+			type="limitbox"
+			label="COM_CONTENT_LIST_LIMIT"
+			description="COM_CONTENT_LIST_LIMIT_DESC"
+			class="input-medium"
+			default="20"
+			onchange="this.form.submit();"
+		/>
+	</fields>
+</form>

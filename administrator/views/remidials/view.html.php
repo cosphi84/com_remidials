@@ -52,6 +52,7 @@ class RemidialsViewRemidials extends HtmlView
         }
 
         ToolbarHelper::custom('remidials.download', 'download', 'download', 'Unduh', false);
+        ToolbarHelper::custom('remidials.sync', 'loop', 'loop', 'Sinkronkan', true);
 
         if ($cando->get('core.delete')) {
             ToolbarHelper::deleteList('JGLOBAL_CONFIRM_DELETE', 'remidials.delete');

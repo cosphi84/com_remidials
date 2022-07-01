@@ -45,6 +45,9 @@ $listDir = $this->escape($this->state->get('list.direction'));
                 <th class="center">
                     <?php echo HTMLHelper::_('grid.checkall'); ?>
                 </th>
+                <th class="center">
+                    <?php echo Text::_('COM_REMIDIALS_STATUS_LABEL'); ?>
+                </th>
                 <th>
                     <?php echo Text::_('COM_REMIDIALS_MAHASISWA_LABEL'); ?>
                 </th>
@@ -59,6 +62,9 @@ $listDir = $this->escape($this->state->get('list.direction'));
                 </th>
                 <th class="center">
                     <?php echo Text::_('COM_REMIDIALS_NILAI_REMID_LABEL'); ?>
+                </th>
+                <th class="center">
+                    <?php echo Text::_('COM_REMIDIALS_NILAI_MASTER_LABEL'); ?>
                 </th>
                 <th class="center">
                     <?php echo Text::_('COM_REMIDIALS_CONF_FAKULTAS'); ?>
@@ -82,6 +88,9 @@ $listDir = $this->escape($this->state->get('list.direction'));
                 <tr class="row<?php echo $i % 2; ?>">
                     <td class="center">
                         <?php echo HTMLHelper::_('grid.id', $i, $item->id); ?>
+                    </td>
+                    <td>
+                        <?php echo $item->status .' - '. $item->text; ?>
                     </td>
                     <td class="nowrap">
                         <?php echo $item->NPM; ?>
@@ -113,14 +122,26 @@ $listDir = $this->escape($this->state->get('list.direction'));
                         <?php echo $item->nilai_remidial; ?>
                     </td>
                     <td class="center">
+                        <?php
+                        switch ($item->catid) {
+                            case 'sp':
+                                echo $item->nilai_akhir;
+                                break;
+                            default:
+                                echo $item->{$item->catid};
+                                break;
+                            }
+                            ?>
+                    </td>
+                    <td class="center">
                         <?php echo HTMLHelper::_('jgrid.published', $item->auth_fakultas, $i, 'remidials.', true, 'cb'); ?>
                     </td>
                     <td class="center">
                         <?php if ($item->update_master_nilai) {
-                                    echo Text::_('JYES');
-                                } else {
-                                    echo Text::_('JNO');
-                                }
+                                echo Text::_('JYES');
+                            } else {
+                                echo Text::_('JNO');
+                            }
                         ?>
                     </td>
                     <td class="center">

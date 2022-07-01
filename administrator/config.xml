@@ -62,8 +62,10 @@
             min         = "0"
             max         = "80"
             step        = "5"
+            default     = "50"
             class       = "input input-small"
             showon      = "jenis_remidial:uts"
+            required    = "true"
         />
 
         <field 
@@ -76,6 +78,8 @@
             step        = "5"
             class       = "input input-small"
             showon      = "jenis_remidial:uas"
+            default     = "50"
+            required    = "true"
         />
 
         <field 
@@ -88,6 +92,8 @@
             step        = "5"
             class       = "input input-small"
             showon      = "jenis_remidial:sp"
+            default     = "50"
+            required    = "true"
         />
 
     </fieldset>

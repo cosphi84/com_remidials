@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+	<layout title="COM_REMIDIALS_VIEW_REMIDIALS_TITLE" option="COM_REMEDIALS_VIEW_REMIDIALS_OPTION">
+		
+		<message>
+			<![CDATA[COM_REMIDIALS_VIEW_REMIDIALS_DESC]]>
+		</message>
+	</layout>
+</metadata>

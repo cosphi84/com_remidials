@@ -31,7 +31,7 @@ class RemidialsViewRegistration extends HtmlView
 
         // Memastikan hanya mahasiswa yang boleh akses ke halaman ini.
         if (!in_array($grpMahasiswa, $usrGroups)) {
-            $app->enqueueMessage('JGLOBAL_AUTH_ACCESS_DENIED', 'error');
+            $app->enqueueMessage(Text::_('JGLOBAL_AUTH_ACCESS_DENIED', 'error'));
             $app->redirect(Route::_('index.php'));
             return false;
         }

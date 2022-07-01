@@ -21,6 +21,7 @@ class RemidialsModelRemidials extends ListModel
                 'id',
                 'status',
                 'prodi',
+                'jenis'
             );
         }
         parent::__construct($config);
@@ -31,10 +32,10 @@ class RemidialsModelRemidials extends ListModel
         $db = $this->getDbo();
         $query = $db->getQuery(true);
 
-        $query->select(array('r.id', 'r.dosen_id', 'r.catid', 'r.tahun_ajaran', 'r.auth_fakultas', 'r.nilai_awal', 'r.nilai_remidial', 'r.update_master_nilai'))
+        $query->select(array('r.id', 'r.dosen_id', 'r.catid', 'r.input_date', 'r.created_date','r.input_by','r.tahun_ajaran', 'r.auth_fakultas', 'r.nilai_awal', 'r.nilai_remidial', 'r.update_master_nilai'))
                 ->from($db->quoteName('#__remidials', 'r'));
 
-        $query->select(array('n.id AS nid'))
+        $query->select(array('n.id AS nid', 'n.uts', 'n.uas', 'n.nilai_akhir'))
             ->innerJoin('#__siak_nilai AS n ON n.id = r.nilai_id');
 
         $query->select(array('m.title AS kodemk', 'm.alias AS mk'))
@@ -48,6 +49,9 @@ class RemidialsModelRemidials extends ListModel
         
         $query->select(array('k.title AS konsentrasi'))
             ->leftJoin('#__siak_jurusan AS k on k.id = n.jurusan');
+        
+        $query->select(array('st.status', 'st.text'))
+            ->leftJoin('#__remidial_status AS st ON st.id = r.state');
 
         $query->select('g.title AS kelas')
             ->leftJoin('#__siak_kelas_mahasiswa AS g on g.id = n.kelas');
@@ -57,6 +61,7 @@ class RemidialsModelRemidials extends ListModel
         $search = $this->getState('filter.search');
         $prodi = $this->getState('filter.prodi');
         $status = $this->getState('filter.status');
+        $jenis = $this->getState('filter.jenis');
 
         if (!empty($search)) {
             $likes = array( $db->qn('u.name'). ' LIKE '. $db->quote('%'. $search.'%'),
@@ -66,11 +71,17 @@ class RemidialsModelRemidials extends ListModel
         }
 
         if (!empty($status)) {
-            $query->where($db->qn('n.state'). ' = '. (int) $status);
+            $query->where($db->qn('r.state'). ' = '. (int) $status);
+        } else {
+            $query->where($db->qn('r.state') . ' < 6');
         }
 
         if (!empty($prodi)) {
             $query->where($db->qn('n.prodi'). ' = '. $db->q($prodi));
+        }
+
+        if (!empty($jenis)) {
+            $query->where($db->qn('r.catid'). ' = '. $db->q($jenis));
         }
 
         // Add the list ordering clause.
@@ -84,7 +95,11 @@ class RemidialsModelRemidials extends ListModel
     protected function populateState($ordering = null, $direction = null)
     {
         $app = Factory::getApplication();
+        $format = $app->input->getCmd('format', 'html');
         $this->setState('filter.prodi', $this->getUserStateFromRequest($this->context.'.filter.prodi', 'filter_prodi', '', 'string'));
         parent::populateState($ordering, $direction);
+        if ($format !== 'html') {
+            $this->setState('list.limit', '');
+        }
     }
 }

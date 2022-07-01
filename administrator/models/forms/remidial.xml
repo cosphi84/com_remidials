@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form>
+    <fieldset name="frmEditRemidi">
+        
+        <field 
+            name        = "mahasiswa"
+            type        = "text"
+            label       = "COM_REMIDIALS_LABEL_MAHASISWA"
+            description = ""
+            disabled    = "true"
+        />
+        <field
+            name        = "NPM"
+            type        = "text"
+            label       = "COM_REMIDIALS_LABEL_NPM"
+            description = ""
+            disabled    = "true"
+         />
+        <field
+            name        = "kodemk"
+            type        = "text"
+            label       = "COM_REMIDIALS_LABEL_KODE_MK"
+            description = ""
+            disabled    = "true"
+        />
+        <field
+            name        = "mk"
+            type        = "text"
+            label       = "COM_REMIDIALS_LABEL_MATAKULIAH"
+            description = ""
+            disabled    = "true"
+        />
+        <field 
+            name        = "dosen_id"
+            type        = "user"
+            label       = "COM_REMIDIALS_LABEL_DOSEN"
+            description = ""
+            required    = "true"
+        />
+        <field 
+            name        = "catid"
+            type        = "list"
+            label       = "COM_REMIDIALS_LABEL_JENIS_REMIDIAL"
+            description = ""
+            disabled    = "true"
+        >
+            <option value="uts">COM_REMIDIALS_UTS</option>
+            <option value="uas">COM_REMIDIALS_UAS</option>
+            <option value="sp">COM_REMIDIALS_SP</option>
+        </field>
+    
+        <field 
+            name        = "nilai_awal"
+            type        = "number"
+            label       = "COM_REMIDIALS_LABEL_NILAI_AWAL"
+            description = ""
+            disabled    = "true"
+        />
+        <field 
+            name        = "nilai_remidial"
+            type        = "number"
+            label       = "COM_REMIDIALS_LABEL_NILAI_REMIDIAL"
+            description = ""
+            min         = "0"
+            max         = "100"
+            step        = "1"
+        />
+
+        <field 
+            name        = "input"
+            type        = "text"
+            label       = "COM_REMIDIALS_LABEL_INPUT_NILAI_BY"
+            description = ""
+            disabled    = "true"
+            showon      = "nilai_remidial!:"
+        />
+        <field 
+            name        = "input_date"
+            type        = "text"
+            label       = "COM_REMIDIALS_INPUT_NILAI_DATE"
+            description = ""
+            disabled    = "true"
+            showon      = "nilai_remidial!:"
+        />
+
+        <field 
+            name        = "state"
+            type        = "statusremidi"
+            label       = "COM_REMIDIALS_LABEL_STATUS_REMIDIAL"
+            description = ""
+            required    = "true"
+        >
+            <option value="">COM_REMIDIALS_PILIH_OPSI</option>
+        </field>
+
+        <field 
+            name        = "auth_fakultas"
+            type        = "radio"
+            label       = "COM_REMIDIALS_LABEL_AUTH_FAKULTAS"
+            description = ""
+            required    = "true"
+            class       = "btn-group btn-group-yesno"
+        >
+        <option value="1">JYES</option>
+        <option value="0">JNO</option>
+        </field>
+        <field 
+            name        = "created_date"
+            type        = "text"
+            label       = "COM_REMIDIALS_TANGGAL_DAFTAR"
+            description = ""
+            disabled    = "true"
+        />
+        <field 
+            name        = 'id'
+            type        = 'hidden'
+        />
+    </fieldset>
+</form>
