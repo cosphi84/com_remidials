@@ -32,8 +32,8 @@ CREATE TABLE IF NOT EXISTS `#__remidial_status`
 
 INSERT INTO `#__remidial_status` (`status`, `text`,`desc`) VALUES 
 (10, 'Diajukan', 'Pengajuan Perbaikan Nilai'),
-(20, 'Buat Tugas', 'Dosen membuat Tugas'),
-(30, 'Kirim Tugas','Tugas sudah dikirm ke Mahasiswa'),
-(40, 'Kirim Jawaban', 'Mahasiswa sudah submit jawaban'),
+(20, 'Persiapan Materi', 'Dosen membuat Materi untuk remidial / SP'),
+(30, 'Submit Materi','Dosen sudah selesai mempersiapkan materi Remidi / SP'),
+(40, 'Proses Remidi / SP', 'Proses KBM pendek atau pengerjaan Tugas Remedial'),
 (50, 'Pending Nilai', 'Nilai dipending Dosen'),
 (60, 'Selesai', 'Dosen sudah memberikan nilai');
