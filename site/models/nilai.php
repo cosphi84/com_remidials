@@ -44,11 +44,13 @@ class RemidialsModelNilai extends ListModel
         switch ($filter) {
             case 'uts':
                 $query->select($db->qn('n.uts'))
-                    ->where($db->qn('n.uts'). ' <= '. (int) $params->get('treshold_uts', 50));
+                    ->where($db->qn('n.uts'). ' <= '. (int) $params->get('treshold_uts', 50))
+                    ->where($db->qn('n.nilai_final') . ' = '. 0);
                 break;
             case 'uas':
                 $query->select($db->qn('n.uas'))
-                    ->where($db->qn('n.uas'). ' <= '. (int) $params->get('treshold_uas', 50));
+                    ->where($db->qn('n.uas'). ' <= '. (int) $params->get('treshold_uas', 50))
+                    ->where($db->qn('n.nilai_final') . ' = '. 0);
                 break;
             case 'sp':
                 $query->select($db->qn('n.nilai_akhir'))
@@ -66,8 +68,7 @@ class RemidialsModelNilai extends ListModel
 
         $query->from($db->quoteName('#__siak_nilai', 'n'))
                 ->where($db->qn('n.user_id').' = '. (int) $user->id)
-                ->where($db->qn('n.state') . ' = '. (int) 1)
-                ->where($db->qn('n.nilai_final') . ' = '. 0)
+                ->where($db->qn('n.state') . ' = '. (int) 1)                
                 ->where('r.id IS NULL');
 
         $query->select(array('mk.title AS kodemk', 'mk.alias AS matakuliah', 's.title AS semester'))

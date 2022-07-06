@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS `#__remidials` (
     `catid` VARCHAR(10) NOT NULL DEFAULT '',
     `tahun_ajaran` VARCHAR(10) NOT NULL DEFAULT '',
     `nilai_id` INT(10) UNSIGNED NOT NULL,
-    `state` TINYINT(4) NOT NULL DEFAULT 10,
+    `state` TINYINT(4) NOT NULL DEFAULT 1,
     `dosen_id` INT(10) NOT NULL,
     `auth_fakultas` TINYINT(4) UNSIGNED NOT NULL DEFAULT 0,
     `nilai_awal` TINYINT(4) UNSIGNED NOT NULL DEFAULT 0,
