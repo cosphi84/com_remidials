@@ -138,9 +138,9 @@ $listDir = $this->escape($this->state->get('list.direction'));
                     </td>
                     <td class="center">
                         <?php if ($item->update_master_nilai) {
-                                echo Text::_('JYES');
+                                echo Text::_('COM_REMIDIALS_GENERAL_SUDAH');
                             } else {
-                                echo Text::_('JNO');
+                                echo Text::_('COM_REMIDIALS_GENERAL_BELUM');
                             }
                         ?>
                     </td>

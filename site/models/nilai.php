@@ -68,7 +68,7 @@ class RemidialsModelNilai extends ListModel
 
         $query->from($db->quoteName('#__siak_nilai', 'n'))
                 ->where($db->qn('n.user_id').' = '. (int) $user->id)
-                ->where($db->qn('n.state') . ' = '. (int) 1)                
+                ->where($db->qn('n.state') . ' = '. (int) 1)
                 ->where('r.id IS NULL');
 
         $query->select(array('mk.title AS kodemk', 'mk.alias AS matakuliah', 's.title AS semester'))

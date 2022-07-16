@@ -86,12 +86,13 @@ use Joomla\CMS\Uri\Uri;
           }
 
           $dataOK['id'] = $id;
-
+        /*
           if ($model->updateNilaiMaster($dataOK)) {
               $dataOK['update_master_nilai'] = 1;
           } else {
               $dataOK['update_master_nilai'] = 0;
           }
+          */
           
           if (!$model->save($dataOK)) {
               $app->setUserState($context.'.data', $dataOK);
@@ -100,26 +101,36 @@ use Joomla\CMS\Uri\Uri;
               $this->setRedirect($currentUrl);
               return false;
           }
+          
 
           $app->setUserState($context.'.data', null);
-
+          $model->setState('remidial.id', $id);
+          
+          
           $dataNIlai = $model->getItem();
+          
           // send email
-          $isiEmail = 'Yth. '. $user->name.', \n'
-                    . 'Terima kasih sudah mengisi nilai perbaikan :\n\n'
-                    . 'Kode MK       : '. $dataNIlai->kodemk. '\n'
-                    . 'Matakuliah    : '. $dataNIlai->matakuliah.'\n'
-                    . 'NPM Mahasiswa : '. $dataNIlai->NPM. '\n'
-                    . 'Mahasiswa     : '. $dataNIlai->mahasiswa. '\n'
-                    . 'Nilai Awal    : '. $dataNIlai->nilai_awal. '\n'
-                    . 'Nilai Akhir   : '. $dataNIlai->nilai_remidial . '\n'
-                    . 'Status        : '. $dataNIlai->status .' - '. $dataNIlai->Text .'\n'
-                    . '------------------------------------------------------------------ \n';
+          $isiEmail = 'Yth. '. $user->name.', <br />'
+                    . 'Terima kasih sudah mengisi nilai perbaikan :<br />'
+                    . '<ul>'
+                    
+                    . '<li>Kode MK       : '. $dataNIlai->kodemk. '</li>'
+                    . '<li>Matakuliah    : '. $dataNIlai->mk.'</li>'
+                    . '<li>NPM Mahasiswa : '. $dataNIlai->NPM. '</li>'
+                    . '<li>Mahasiswa     : '. $dataNIlai->mahasiswa. '</li>'
+                    . '<li>Nilai Awal    : '. $dataNIlai->nilai_awal. '</li>'
+                    . '<li>Nilai Akhir   : '. $dataNIlai->nilai_remidial . '</li>'
+                    . '<li>Status        : '. $dataNIlai->status .' - '. $dataNIlai->text .'</li>'
+                    . '</ul>'
+                    . '------------------------------------------------------------------ <br />';
         
           
           $mailer = Factory::getMailer();
-          $mailer->addRecipient($user->email);
-          $mailer->setSubject('Bukti Input Nilai Perbaikan');
+          $mailer->addRecipient($user->email, $user->name);
+          $mailer->setFrom('siakadmin@ft-untagcirebon.ac.id', 'No-Reply Admin SIAK');
+          $mailer->setSubject('Bukti Input Nilai Perbaikan / SP');
+          $mailer->isHtml(true);
+          $mailer->Encoding = 'base64';
           $mailer->setBody($isiEmail);
 
           try {

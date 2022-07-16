@@ -73,7 +73,13 @@ class RemidialsModelRemidials extends ListModel
         if (!empty($status)) {
             $query->where($db->qn('r.state'). ' = '. (int) $status);
         } else {
-            $query->where($db->qn('r.state') . ' < 6');
+            $query->where(implode(' OR ', array(
+                        $db->qn('r.state') . ' < 6',
+                        $db->qn('r.auth_fakultas'). ' = 0',
+                        $db->qn('r.update_master_nilai'). ' = 0'
+                    )
+                )
+            );
         }
 
         if (!empty($prodi)) {

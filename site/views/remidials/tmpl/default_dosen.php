@@ -84,6 +84,7 @@ $listDir = $this->escape($this->state->get('list.direction'));
                         <?php echo $this->pagination->getRowOffset($i); ?>
                     </td>
                     <td class="center nowrap">
+                        <?php if($item->state <= 5) { ?>
                         <a
                             href="<?php echo Route::_('index.php?option=com_remidials&view=remidial&layout=edit&id='.$item->id); ?>">
                             <?php echo $item->status; ?>
@@ -91,6 +92,12 @@ $listDir = $this->escape($this->state->get('list.direction'));
                                 <?php echo $item->text; ?>
                             </div>
                         </a>
+                        <?php } else { ?>
+                            <?php echo $item->status; ?>
+                            <div class=" small nowrap">
+                                <?php echo $item->text; ?>
+                            </div>
+                        <?php } ?>
                     </td>
                     <td class="nowrap">
                         <?php echo Factory::getUser($item->user_id)->username; ?>
@@ -113,7 +120,12 @@ $listDir = $this->escape($this->state->get('list.direction'));
                     <td class="center">
                         <?php echo $item->nilai_awal; ?>
                     </td>
-                    <td class="center">
+                    <td class="center" style="color:<?php if(!(bool)$item->update_master_nilai ) {
+                        echo "red;";
+                    }else { 
+                        echo "green;"; 
+                    }
+                    ?>">
                         <?php echo $item->nilai_remidial; ?>
                     </td>
 
